@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFrameworks>net2;netstandard1.6</TargetFrameworks>
+    <AssemblyVersion>19.2.0.0</AssemblyVersion>
+    <FileVersion>19.2.0.0</FileVersion>
+    <Version>19.2.0</Version>
+    <PackageId>GroupDocs.Classification-Cloud</PackageId>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Remove="GroupDocs.Classification.Cloud.Sdk.csproj.DotSettings" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="10.0.1" />
+  </ItemGroup>
+  <ItemGroup Condition="'$(TargetFramework)' == 'net2'">
+    <Reference Include="System.Web" />
+  </ItemGroup>
+  <ItemGroup Condition="'$(TargetFramework)' == 'netstandard1.6'">
+    <PackageReference Include="System.Net.Requests" Version="4.3.0" />
+    <PackageReference Include="System.Diagnostics.TraceSource" Version="4.3.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Model\Requests\" />
+  </ItemGroup>
+</Project>

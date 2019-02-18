@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\GroupDocs.Classification.Cloud.Sdk\GroupDocs.Classification.Cloud.Sdk.csproj" />
+  </ItemGroup>
+
+</Project>
