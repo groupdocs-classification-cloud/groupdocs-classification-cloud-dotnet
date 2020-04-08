@@ -123,6 +123,57 @@ namespace GroupDocs.Classification.Cloud.Sdk.Api
         }
 
         /// <summary>
+        /// Classifies text or document. 
+        /// </summary>
+        /// <param name="request">Request. <see cref="ClassifyFileRequest" /></param> 
+        /// <returns><see cref="ClassificationResponse"/></returns>            
+        public ClassificationResponse ClassifyFile(ClassifyFileRequest request)
+        {
+            // create path and map variables
+            var resourcePath = this.configuration.GetApiRootUrl() + "/classification/classify/file";
+            resourcePath = Regex
+                        .Replace(resourcePath, "\\*", string.Empty)
+                        .Replace("&amp;", "&")
+                        .Replace("/?", "?");
+            var formParams = new Dictionary<string, object>();
+            resourcePath = UrlHelper.AddQueryParameterToUrl(resourcePath, "bestClassesCount", request.BestClassesCount);
+            resourcePath = UrlHelper.AddQueryParameterToUrl(resourcePath, "taxonomy", request.Taxonomy);
+            resourcePath = UrlHelper.AddQueryParameterToUrl(resourcePath, "precisionRecallBalance", request.PrecisionRecallBalance);
+            resourcePath = UrlHelper.AddQueryParameterToUrl(resourcePath, "password", request.Password);
+
+            if (request.File != null) 
+            {
+                formParams.Add("filename", "test.pdf");
+                formParams.Add("file", this.apiInvoker.ToFileInfo(request.File, "File"));
+            }
+            
+            try 
+            {                               
+                var response = this.apiInvoker.InvokeApi(
+                    resourcePath, 
+                    "POST", 
+                    null, 
+                    null, 
+                    formParams);
+                if (response != null)
+                {
+                    return (ClassificationResponse)SerializationHelper.Deserialize(response, typeof(ClassificationResponse));
+                }
+                    
+                return null;
+            } 
+            catch (ApiException ex) 
+            {
+                if (ex.ErrorCode == 404) 
+                {
+                    return null;
+                }
+                
+                throw;                
+            }
+        }
+
+        /// <summary>
         /// Retrieves list of supported file formats. 
         /// </summary>
         /// <param name="request">Request. <see cref="GetSupportedFileFormatsRequest" /></param> 

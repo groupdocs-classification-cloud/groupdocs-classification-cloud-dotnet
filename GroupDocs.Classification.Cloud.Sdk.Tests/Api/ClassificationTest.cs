@@ -98,5 +98,23 @@ namespace GroupDocs.Classification.Cloud.Sdk.Tests.Api
             var actual = this.ClassificationApi.Classify(request);
             Assert.AreEqual(200, actual.Code);
         }
+
+        /// <summary>
+        /// Test for request content classification.
+        /// </summary>
+        [Test]
+        public void TestClassifyRequestBody()
+        {
+            var localName = "test_multi_pages.docx";
+
+            using (var content = File.OpenRead(BaseTestContext.GetDataDir(BaseTestContext.CommonFolder) + localName))
+            {
+                // ClassifyRequest is a common request for string and document classification.
+                var request = new ClassifyFileRequest(content, "3");
+
+                var actual = this.ClassificationApi.ClassifyFile(request);
+                Assert.AreEqual(200, actual.Code);
+            }
+        }
     }
 }
