@@ -33,7 +33,7 @@ namespace GroupDocs.Classification.Cloud.Sdk.Tests.Api
     using NUnit.Framework;
 
     /// <summary>
-    /// Examples of how to classify text and documents.
+    /// Examples of how to classify text and documents with IAB-2, Documents or Sentiment taxonomy.
     /// </summary>
     [TestFixture]
     public class ClassificationTest : BaseTestContext
@@ -53,7 +53,20 @@ namespace GroupDocs.Classification.Cloud.Sdk.Tests.Api
         }
 
         /// <summary>
-        /// Test for document classification.
+        /// Test for the sentiment classification.
+        /// </summary>
+        [Test]
+        public void TestClassifySentiment()
+        {
+            var request = new ClassifyRequest(new BaseRequest { Description = "Try sentiment classification. This product is good." }, "3", "sentiment");
+            var actual = this.ClassificationApi.Classify(request);
+
+            Assert.AreEqual(200, actual.Code);
+            Assert.AreEqual("Positive", actual.BestClassName);
+        }
+
+        /// <summary>
+        /// Test for the document classification.
         /// </summary>
         [Test]
         public void TestClassifyDocument()
@@ -77,7 +90,7 @@ namespace GroupDocs.Classification.Cloud.Sdk.Tests.Api
         }
 
         /// <summary>
-        /// Test for document classification with taxonomy "documents".
+        /// Test for the document classification with taxonomy "documents".
         /// </summary>
         [Test]
         public void TestClassifyTaxonomyDocuments()
@@ -100,7 +113,7 @@ namespace GroupDocs.Classification.Cloud.Sdk.Tests.Api
         }
 
         /// <summary>
-        /// Test for request content classification.
+        /// Test for classification by request content.
         /// </summary>
         [Test]
         public void TestClassifyRequestBody()
@@ -109,10 +122,8 @@ namespace GroupDocs.Classification.Cloud.Sdk.Tests.Api
 
             using (var content = File.OpenRead(BaseTestContext.GetDataDir(BaseTestContext.CommonFolder) + localName))
             {
-                // ClassifyRequest is a common request for string and document classification.
-                var request = new ClassifyFileRequest(content, "3");
-
-                var actual = this.ClassificationApi.ClassifyFile(request);
+                // Classifies file with sentiment taxonomy and returns 2 best results.
+                var actual = this.ClassificationApi.ClassifyFile(new ClassifyFileRequest(content, "2", "Sentiment"));
                 Assert.AreEqual(200, actual.Code);
             }
         }

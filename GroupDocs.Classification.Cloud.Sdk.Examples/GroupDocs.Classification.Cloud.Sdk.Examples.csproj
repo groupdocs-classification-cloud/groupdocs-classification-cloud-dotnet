@@ -6,7 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\GroupDocs.Classification.Cloud.Sdk\GroupDocs.Classification.Cloud.Sdk.csproj" />
+    <PackageReference Include="GroupDocs.Classification-Cloud" Version="20.5.0" />
   </ItemGroup>
 
 </Project>

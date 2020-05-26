@@ -20,20 +20,35 @@
             // Set timeout if necessary.
             // var apiInstance = new ClassificationApi(configuration,  10000);
             var apiInstance = new ClassificationApi(configuration);
-            
 
+            ClassifyRequest request;
+            ClassificationResponse response;
+
+            // Classify text with IAB-2 taxonomy in try-catch.
             try
             {
-                var request = new ClassifyRequest(new BaseRequest { Description = "Try Text classification" }, "3");
+                request = new ClassifyRequest(new BaseRequest { Description = "Try Text classification" }, "3");
 
-                // Get classification results
-                var response = apiInstance.Classify(request);    
+                // Get classification results.
+                response = apiInstance.Classify(request);
                 Debug.Print(response.ToString());
             }
             catch (Exception e)
             {
                 Debug.Print("Exception when calling ClassificationApi.Classify: " + e.Message);
             }
+
+            // Classify text with Documents taxonomy.
+            request = new ClassifyRequest(new BaseRequest { Description = "Try Text classification" }, taxonomy: "documents");
+            // Get classification results
+            response = apiInstance.Classify(request);
+            Debug.Print(response.ToString());
+
+            // Classify text with Sentiment taxonomy.
+            request = new ClassifyRequest(new BaseRequest { Description = "Try sentiment classification. This product is good." }, taxonomy: "sentiment");
+            // Get classification results
+            response = apiInstance.Classify(request);
+            Debug.Print(response.ToString());
         }
     }
 }
