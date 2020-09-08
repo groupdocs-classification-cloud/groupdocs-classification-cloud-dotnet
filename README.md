@@ -9,7 +9,8 @@ This repository contains GroupDocs.Classification Cloud SDK for .NET source code
 See [API Reference](https://apireference.groupdocs.cloud/classification/) for full API specification.
 
 ## How to use the SDK?
-The complete source code is available in this repository folder. You can either directly use it in your project via source code or get [NuGet distribution](https://www.nuget.org/packages/GroupDocs.Classification-Cloud/) (recommended). For more details, please visit our [documentation website](https://docs.groupdocs.cloud/display/classificationcloud/Available+SDKs#AvailableSDKs-.NET).
+
+The complete source code is available in this repository folder. You can either directly use it in your project via source code or get [NuGet distribution](https://www.nuget.org/packages/GroupDocs.Classification-Cloud/) (recommended). For more details, please visit our [documentation website](https://docs.groupdocs.cloud/classification/).
 
 ### Prerequisites
 
@@ -21,11 +22,11 @@ To use GroupDocs.Classification for Cloud .NET SDK you need to register an accou
 
 From the command line:
 
-	nuget install GroupDocs.Classification-Cloud
+	`nuget install GroupDocs.Classification-Cloud`
 
 From Package Manager:
 
-	PM> Install-Package GroupDocs.Classification-Cloud
+	`PM> Install-Package GroupDocs.Classification-Cloud`
 
 From within Visual Studio:
 
@@ -83,5 +84,4 @@ namespace Example
 - .NET Framework 2.0 or later
 - [Json.NET](https://www.nuget.org/packages/Newtonsoft.Json/)
 
-## Contact Us
-Your feedback is very important to us. Please feel free to contact us using our [Support Forums](https://forum.groupdocs.cloud/c/classification).
+[Home](https://www.groupdocs.cloud/) | [Product Page](https://products.groupdocs.cloud/classification/net) | [Docs](https://docs.groupdocs.cloud/classification/) | [Demos](https://products.groupdocs.app/classification/family) | [API Reference](https://apireference.groupdocs.cloud/classification/) | [Examples](https://github.com/groupdocs-classification-cloud/groupdocs-classification-cloud-dotnet-samples) | [Blog](https://blog.groupdocs.cloud/category/classification/) | [Free Support](https://forum.groupdocs.cloud/c/classification) | [Free Trial](https://purchase.groupdocs.cloud/trial)
