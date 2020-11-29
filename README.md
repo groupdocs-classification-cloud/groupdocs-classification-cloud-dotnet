@@ -55,11 +55,11 @@ namespace Example
     {
         public void Main()
         {
-            //TODO: Get your AppSID and AppKey at https://dashboard.groupdocs.cloud/ (free registration is required).
+            // TODO: Get your ClientId and ClientSecret at https://dashboard.groupdocs.cloud/ (free registration is required).
             var configuration = new Configuration
             {
-                AppSid = "XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX",
-                AppKey = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+                ClientId = "XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX",
+                ClientSecret = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
             };
 
             var apiInstance = new ClassificationApi(configuration);
