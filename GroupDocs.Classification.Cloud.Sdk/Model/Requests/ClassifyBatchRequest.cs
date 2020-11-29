@@ -1,5 +1,5 @@
 // --------------------------------------------------------------------------------------------------------------------
-// <copyright company="Aspose" file="ClassifyRequest.cs">
+// <copyright company="Aspose" file="ClassifyBatchRequest.cs">
 //   Copyright (c) 2020 GroupDocs.Classification for Cloud
 // </copyright>
 // <summary>
@@ -24,41 +24,55 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GroupDocs.Classification.Cloud.Sdk.Model.Requests 
 {
+  using System.Collections.Generic;
   using GroupDocs.Classification.Cloud.Sdk.Model; 
 
   /// <summary>
-  /// Request model for <see cref="GroupDocs.Classification.Cloud.Sdk.Api.ClassificationApi.Classify" /> operation.
+  /// Request model for <see cref="GroupDocs.Classification.Cloud.Sdk.Api.ClassificationApi.ClassifyBatch" /> operation.
   /// </summary>  
-  public class ClassifyRequest  
+  public class ClassifyBatchRequest  
   {
         /// <summary>
-        /// Initializes a new instance of the <see cref="ClassifyRequest"/> class.
+        /// Initializes a new instance of the <see cref="ClassifyBatchRequest"/> class.
         /// </summary>        
-        public ClassifyRequest()
+        public ClassifyBatchRequest()
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ClassifyRequest"/> class.
+        /// Initializes a new instance of the <see cref="ClassifyBatchRequest"/> class.
         /// </summary>
-        /// <param name="request">Raw text to classify or document&#39;s info.</param>
+        /// <param name="request"><see cref="BatchRequest"/> Batch of raw texts to classify.</param>
         /// <param name="bestClassesCount">Count of the best classes to return.</param>
         /// <param name="taxonomy">Taxonomy to use for classification.</param>
         /// <param name="precisionRecallBalance">Balance between precision and recall: precision, recall or empty (for default).</param>
-        /// <param name="storage">Storage name</param>
-        public ClassifyRequest(BaseRequest request, string bestClassesCount = null, string taxonomy = null, string precisionRecallBalance = null, string storage = null)             
+        public ClassifyBatchRequest(BatchRequest request, string bestClassesCount = null, string taxonomy = null, string precisionRecallBalance = null)             
         {
             this.Request = request;
             this.BestClassesCount = bestClassesCount;
             this.Taxonomy = taxonomy;
             this.PrecisionRecallBalance = precisionRecallBalance;
-            this.Storage = storage;
         }
 
         /// <summary>
-        /// Raw text to classify or document's info.
+        /// Initializes a new instance of the <see cref="ClassifyBatchRequest"/> class.
+        /// </summary>
+        /// <param name="batch">Batch of raw texts to classify.</param>
+        /// <param name="bestClassesCount">Count of the best classes to return.</param>
+        /// <param name="taxonomy">Taxonomy to use for classification.</param>
+        /// <param name="precisionRecallBalance">Balance between precision and recall: precision, recall or empty (for default).</param>
+        public ClassifyBatchRequest(string[] batch, string bestClassesCount = null, string taxonomy = null, string precisionRecallBalance = null)
+        {
+            this.Request = new BatchRequest { Batch = new List<string>(batch) };
+            this.BestClassesCount = bestClassesCount;
+            this.Taxonomy = taxonomy;
+            this.PrecisionRecallBalance = precisionRecallBalance;
+        }
+
+        /// <summary>
+        /// BatchRequestBatch of row texts to classify.
         /// </summary>  
-        public BaseRequest Request { get; set; }
+        public BatchRequest Request { get; set; }
 
         /// <summary>
         /// Count of the best classes to return.
@@ -74,10 +88,5 @@ namespace GroupDocs.Classification.Cloud.Sdk.Model.Requests
         /// Balance between precision and recall: precision, recall or empty (for default).
         /// </summary>  
         public string PrecisionRecallBalance { get; set; }
-
-        /// <summary>
-        /// Storage name
-        /// </summary>  
-        public string Storage { get; set; }
   }
 }

@@ -119,14 +119,14 @@ namespace GroupDocs.Classification.Cloud.Sdk.Api
         }
 
         /// <summary>
-        /// Gets or sets the app key.
+        /// Gets or sets Client's secret.
         /// </summary>
-        public string AppKey { get; set; }
+        public string ClientSecret { get; set; }
 
         /// <summary>
-        /// Gets or sets the app sid.
+        /// Gets or sets Client's id.
         /// </summary>
-        public string AppSid { get; set; }
+        public string ClientId { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether debug mode.

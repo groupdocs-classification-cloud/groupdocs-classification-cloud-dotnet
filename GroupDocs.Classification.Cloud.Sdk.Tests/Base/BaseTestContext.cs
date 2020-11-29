@@ -48,19 +48,19 @@ namespace GroupDocs.Classification.Cloud.Sdk.Tests.Base
         protected BaseTestContext()
         {
             // To run tests with your own credentials please substitute code bellow with this one
-            // this.keys = new Keys { AppKey = "your app key", AppSid = "your app sid" };
+            // this.keys = new Keys { ClientSecret = "your client secret", ClientId = "your client id" };
             var serverCreds = Path.Combine(DirectoryHelper.GetRootSdkFolder(), "Settings", "servercreds.json");
             this.keys = JsonConvert.DeserializeObject<Keys>(File.ReadAllText(serverCreds));
             if (this.keys == null)
             {
-                throw new FileNotFoundException("servercreds.json doesn't contain AppKey and AppSid");
+                throw new FileNotFoundException("servercreds.json doesn't contain ClientId and ClientSecret");
             }
 
-            var configuration = new Configuration { ApiBaseUrl = this.keys.BaseUrl, AppKey = this.keys.AppKey, AppSid = this.keys.AppSid, AuthorizationUrl = this.keys.AuthorizationUrl };
+            var configuration = new Configuration { ApiBaseUrl = this.keys.BaseUrl, ClientSecret = this.keys.ClientSecret, ClientId = this.keys.ClientId, AuthorizationUrl = this.keys.AuthorizationUrl };
 
             // Set configuration and requests timeout.
             this.ClassificationApi = new ClassificationApi(configuration);
-            this.StorageApi = new StorageApi(new Storage.Cloud.Sdk.Configuration { AppKey = this.AppKey, AppSid = this.AppSid, ApiBaseUrl = this.keys.AuthorizationUrl, DebugMode = true });          
+            this.StorageApi = new StorageApi(new Storage.Cloud.Sdk.Configuration { AppKey = this.ClientSecret, AppSid = this.ClientId, ApiBaseUrl = this.keys.AuthorizationUrl, DebugMode = true });          
         }
 
         /// <summary>
@@ -107,24 +107,24 @@ namespace GroupDocs.Classification.Cloud.Sdk.Tests.Base
         protected ClassificationApi ClassificationApi { get; set; }
 
         /// <summary>
-        /// AppSid
+        /// Client Id
         /// </summary>
-        protected string AppSid
+        protected string ClientId
         {
             get
             {
-                return this.keys.AppSid;
+                return this.keys.ClientId;
             }
         }
 
         /// <summary>
-        /// AppSid
+        /// Client Secret
         /// </summary>
-        protected string AppKey
+        protected string ClientSecret
         {
             get
             {
-                return this.keys.AppKey;
+                return this.keys.ClientSecret;
             }
         }
 
@@ -172,9 +172,9 @@ namespace GroupDocs.Classification.Cloud.Sdk.Tests.Base
         
         private class Keys
         {
-            public string AppSid { get; set; }
+            public string ClientId { get; set; }
 
-            public string AppKey { get; set; }
+            public string ClientSecret { get; set; }
 
             public string BaseUrl { get; set; }
 

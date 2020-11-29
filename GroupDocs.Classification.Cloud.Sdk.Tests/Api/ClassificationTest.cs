@@ -26,6 +26,7 @@
 namespace GroupDocs.Classification.Cloud.Sdk.Tests.Api
 {
     using System.IO;
+    using System.Linq;
     using GroupDocs.Classification.Cloud.Sdk.Model;
     using GroupDocs.Classification.Cloud.Sdk.Model.Requests;
     using GroupDocs.Classification.Cloud.Sdk.Tests.Base;
@@ -126,6 +127,19 @@ namespace GroupDocs.Classification.Cloud.Sdk.Tests.Api
                 var actual = this.ClassificationApi.ClassifyFile(new ClassifyFileRequest(content, "2", "Sentiment"));
                 Assert.AreEqual(200, actual.Code);
             }
+        }
+
+        /// <summary>
+        /// Test for classification batch of texts.
+        /// </summary>
+        [Test]
+        public void TestClassifyBatch()
+        {
+            var text = "Try sentiment classification. This product is good.";
+            var batch = Enumerable.Repeat(text, 10).ToArray();
+            // Classifies file with sentiment taxonomy and returns 2 best results.
+            var actual = this.ClassificationApi.ClassifyBatch(new ClassifyBatchRequest(batch));
+            Assert.AreEqual(200, actual.Code);
         }
     }
 }

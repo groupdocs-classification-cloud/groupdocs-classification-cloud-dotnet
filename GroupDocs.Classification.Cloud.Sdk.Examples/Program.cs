@@ -1,6 +1,7 @@
 ﻿namespace GroupDocs.Classification.Cloud.Sdk.Examples
 {
     using System;
+    using System.Collections.Generic;
     using System.Diagnostics;
     using GroupDocs.Classification.Cloud.Sdk.Api;
     using GroupDocs.Classification.Cloud.Sdk.Model;
@@ -10,7 +11,7 @@
     {
         public static void Main(string[] args)
         {
-            // TODO: Get your AppSID and AppKey at https://dashboard.groupdocs.cloud/ (free registration is required).
+            // TODO: Get your ClientId and ClientSecret at https://dashboard.groupdocs.cloud/ (free registration is required).
             var configuration = new Configuration
             {
                 AppSid = "XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX",
@@ -40,15 +41,28 @@
 
             // Classify text with Documents taxonomy.
             request = new ClassifyRequest(new BaseRequest { Description = "Try Text classification" }, taxonomy: "documents");
-            // Get classification results
+            // Get classification results.
             response = apiInstance.Classify(request);
             Debug.Print(response.ToString());
 
             // Classify text with Sentiment taxonomy.
             request = new ClassifyRequest(new BaseRequest { Description = "Try sentiment classification. This product is good." }, taxonomy: "sentiment");
-            // Get classification results
+            // Get classification results.
             response = apiInstance.Classify(request);
             Debug.Print(response.ToString());
+
+            // Classify text with Sentiment3 taxonomy.
+            request = new ClassifyRequest(new BaseRequest { Description = "Try sentiment classification. This product is good." }, taxonomy: "sentiment3");
+            // Get classification results.
+            response = apiInstance.Classify(request);
+            Debug.Print(response.ToString());
+
+            // Classify batch of texts with Sentiment3 taxonomy.
+            var batchRequest = new ClassifyBatchRequest(new BatchRequest { 
+                Batch = new List<string> { { "Try sentiment classification. This product is good." } } }, taxonomy: "sentiment3");
+            // Get classification results.
+            var batchResponse = apiInstance.ClassifyBatch(batchRequest);
+            Debug.Print(batchResponse.ToString());
         }
     }
 }

@@ -99,8 +99,8 @@ namespace GroupDocs.Classification.Cloud.Sdk.Internal.RequestHandlers
             var requestUrl = this.configuration.AuthorizationUrl + "/connect/token";
 
             var postData = "grant_type=client_credentials";
-            postData += "&client_id=" + this.configuration.AppSid;
-            postData += "&client_secret=" + this.configuration.AppKey;
+            postData += "&client_id=" + this.configuration.ClientId;
+            postData += "&client_secret=" + this.configuration.ClientSecret;
 
             var responseString = this.apiInvoker.InvokeApi(
                 requestUrl,

@@ -1,5 +1,5 @@
 // --------------------------------------------------------------------------------------------------------------------
-// <copyright company="Aspose" file="FormatCollection.cs">
+// <copyright company="Aspose" file="BatchResponse.cs">
 //   Copyright (c) 2020 GroupDocs.Classification for Cloud
 // </copyright>
 // <summary>
@@ -28,20 +28,19 @@ namespace GroupDocs.Classification.Cloud.Sdk.Model
   using System;  
   using System.Collections;
   using System.Collections.Generic;
-  using System.Runtime.Serialization;
   using System.Text;
   using Newtonsoft.Json;
   using Newtonsoft.Json.Converters;
 
   /// <summary>
-  /// Describes object which contains list of supported file formats.
+  /// This response should be returned by the service when handling: POST /classify/batch
   /// </summary>  
-  public class FormatCollection 
+  public class BatchResponse : BaseResponse 
   {                       
         /// <summary>
-        /// Supported file formats.
+        /// Array of results.
         /// </summary>  
-        public List<Format> Formats { get; set; }
+        public List<BatchItemResponse> Results { get; set; }
 
         /// <summary>
         /// Get the string presentation of the object
@@ -49,9 +48,15 @@ namespace GroupDocs.Classification.Cloud.Sdk.Model
         /// <returns>String presentation of the object</returns>
         public override string ToString()  
         {
+          string[] array = new string[this.Results.Count];
+          for (var i = 0; i < array.Length; i++)
+          {
+            array[i] = this.Results[i].ToString();
+          }
+
           var sb = new StringBuilder();
-          sb.Append("class FormatCollection {\n");
-          sb.Append("  Formats: ").Append(this.Formats).Append("\n");
+          sb.Append("class BatchResponse {\n");
+          sb.Append("  Results: ").Append("[" + string.Join(",", array) + "]").Append("\n");
           sb.Append("}\n");
           return sb.ToString();
         }

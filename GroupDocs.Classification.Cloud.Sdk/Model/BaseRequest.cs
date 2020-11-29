@@ -1,6 +1,6 @@
 // --------------------------------------------------------------------------------------------------------------------
 // <copyright company="Aspose" file="BaseRequest.cs">
-//   Copyright (c) 2018 GroupDocs.Classification for Cloud
+//   Copyright (c) 2020 GroupDocs.Classification for Cloud
 // </copyright>
 // <summary>
 //   Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -34,7 +34,7 @@ namespace GroupDocs.Classification.Cloud.Sdk.Model
   using Newtonsoft.Json.Converters;
 
   /// <summary>
-  /// BaseRequest
+  /// BaseRequest for one text or document classification.
   /// </summary>  
   public class BaseRequest 
   {                       

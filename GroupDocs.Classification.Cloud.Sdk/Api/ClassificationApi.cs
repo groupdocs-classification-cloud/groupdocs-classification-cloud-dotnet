@@ -1,6 +1,6 @@
 // --------------------------------------------------------------------------------------------------------------------
 // <copyright company="Aspose" file="ClassificationApi.cs">
-//   Copyright (c) 2018 GroupDocs.Classification for Cloud
+//   Copyright (c) 2020 GroupDocs.Classification for Cloud
 // </copyright>
 // <summary>
 //   Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -38,21 +38,21 @@ namespace GroupDocs.Classification.Cloud.Sdk.Api
     public class ClassificationApi
     {
         public const int DefaultTimeout = 100000;
-
         private readonly ApiInvoker apiInvoker;
         private readonly Configuration configuration;     
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ClassificationApi"/> class.
         /// </summary>
-        /// <param name="apiKey">
-        /// The api Key.
+        /// <param name="clientSecret">
+        /// Client's secret.
         /// </param>
-        /// <param name="appSid">
-        /// The app Sid.
+        /// <param name="clientId">
+        /// Client's id.
         /// </param>
-        public ClassificationApi(string apiKey, string appSid, int timeout = DefaultTimeout)
-            : this(new Configuration { AppKey = apiKey, AppSid = appSid })
+        /// <param name="timeout">Request's timeout (default is 100s)</param>
+        public ClassificationApi(string clientSecret, string clientId, int timeout = DefaultTimeout)
+            : this(new Configuration { ClientSecret = clientSecret, ClientId = clientId }, timeout)
         {
         }
 
@@ -123,7 +123,56 @@ namespace GroupDocs.Classification.Cloud.Sdk.Api
         }
 
         /// <summary>
-        /// Classifies text or document. 
+        /// Classifies batch of texts. 
+        /// </summary>
+        /// <param name="request">Request. <see cref="ClassifyBatchRequest" /></param> 
+        /// <returns><see cref="BatchResponse"/></returns>            
+        public BatchResponse ClassifyBatch(ClassifyBatchRequest request)
+        {
+            // verify the required parameter 'request' is set
+            if (request.Request == null) 
+            {
+                throw new ApiException(400, "Missing required parameter 'request' when calling ClassifyBatch");
+            }
+
+            // create path and map variables
+            var resourcePath = this.configuration.GetApiRootUrl() + "/classification/classify/batch";
+            resourcePath = Regex
+                        .Replace(resourcePath, "\\*", string.Empty)
+                        .Replace("&amp;", "&")
+                        .Replace("/?", "?");
+            resourcePath = UrlHelper.AddQueryParameterToUrl(resourcePath, "bestClassesCount", request.BestClassesCount);
+            resourcePath = UrlHelper.AddQueryParameterToUrl(resourcePath, "taxonomy", request.Taxonomy);
+            resourcePath = UrlHelper.AddQueryParameterToUrl(resourcePath, "precisionRecallBalance", request.PrecisionRecallBalance);
+            var postBody = SerializationHelper.Serialize(request.Request); // http body (model) parameter
+            try 
+            {                               
+                var response = this.apiInvoker.InvokeApi(
+                    resourcePath, 
+                    "POST", 
+                    postBody, 
+                    null, 
+                    null);
+                if (response != null)
+                {
+                    return (BatchResponse)SerializationHelper.Deserialize(response, typeof(BatchResponse));
+                }
+                    
+                return null;
+            } 
+            catch (ApiException ex) 
+            {
+                if (ex.ErrorCode == 404) 
+                {
+                    return null;
+                }
+                
+                throw;                
+            }
+        }
+
+        /// <summary>
+        /// Classifies document from stream. 
         /// </summary>
         /// <param name="request">Request. <see cref="ClassifyFileRequest" /></param> 
         /// <returns><see cref="ClassificationResponse"/></returns>            

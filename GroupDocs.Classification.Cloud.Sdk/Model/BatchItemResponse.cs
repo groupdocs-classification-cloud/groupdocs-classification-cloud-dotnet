@@ -1,5 +1,5 @@
 // --------------------------------------------------------------------------------------------------------------------
-// <copyright company="Aspose" file="FormatCollection.cs">
+// <copyright company="Aspose" file="BatchItemResponse.cs">
 //   Copyright (c) 2020 GroupDocs.Classification for Cloud
 // </copyright>
 // <summary>
@@ -34,14 +34,24 @@ namespace GroupDocs.Classification.Cloud.Sdk.Model
   using Newtonsoft.Json.Converters;
 
   /// <summary>
-  /// Describes object which contains list of supported file formats.
+  /// One item of batch classification response.
   /// </summary>  
-  public class FormatCollection 
+  public class BatchItemResponse 
   {                       
         /// <summary>
-        /// Supported file formats.
+        /// Best class name.
         /// </summary>  
-        public List<Format> Formats { get; set; }
+        public string BestClassName { get; set; }
+
+        /// <summary>
+        /// Best class probability.
+        /// </summary>  
+        public double? BestClassProbability { get; set; }
+
+        /// <summary>
+        /// Array of best classes results.
+        /// </summary>  
+        public List<ClassificationResult> BestResults { get; set; }
 
         /// <summary>
         /// Get the string presentation of the object
@@ -50,8 +60,10 @@ namespace GroupDocs.Classification.Cloud.Sdk.Model
         public override string ToString()  
         {
           var sb = new StringBuilder();
-          sb.Append("class FormatCollection {\n");
-          sb.Append("  Formats: ").Append(this.Formats).Append("\n");
+          sb.Append("class BatchItemResponse {\n");
+          sb.Append("  BestClassName: ").Append(this.BestClassName).Append("\n");
+          sb.Append("  BestClassProbability: ").Append(this.BestClassProbability).Append("\n");
+          sb.Append("  BestResults: ").Append(this.BestResults).Append("\n");
           sb.Append("}\n");
           return sb.ToString();
         }
