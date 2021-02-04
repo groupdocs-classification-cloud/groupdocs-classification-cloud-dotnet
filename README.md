@@ -109,42 +109,25 @@ From within Visual Studio:
 ### Sample usage
 
 The examples below show how your application have to initiate and classify "pdf" file using GroupDocs.Classification-Cloud library:
-## Getting Started
+
+
+## Get Supported File Formats for Classification
 
 ```csharp
-namespace Example
+// Get Client Id and Client Secret from https://dashboard.groupdocs.cloud
+string MyClientId = "";
+string MyClientSecret = "";
+
+// Create instance of the API
+var configuration = new Configuration(MyClientId, MyClientSecret);
+var api = new ClassificationApi(configuration);
+
+// Get supported file formats
+var response = api.GetSupportedFileFormats();
+
+foreach (var format in response.Formats)
 {
-    using System;
-    using System.Diagnostics;
-    using GroupDocs.Classification.Cloud.Sdk;
-    using GroupDocs.Classification.Cloud.Sdk.Api;
-    using GroupDocs.Classification.Cloud.Sdk.Model;
-    using GroupDocs.Classification.Cloud.Sdk.Model.Requests;
-
-    public class Example
-    {
-        public void Main()
-        {
-            // TODO: Get your ClientId and ClientSecret at https://dashboard.groupdocs.cloud/ (free registration is required).
-            var configuration = new Configuration
-            {
-                ClientId = "XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX",
-                ClientSecret = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
-            };
-
-            var apiInstance = new ClassificationApi(configuration);
-            var request = new ClassifyRequest(new BaseRequest { Description = "Try Text classification" }, "3");
-
-            try
-            {
-                var response = apiInstance.classify(request);
-            }
-            catch (Exception e)
-            {
-                Debug.Print("Exception when calling ClassificationApi.classify: " + e.Message);
-            }
-        }
-    }
+	Debug.Print(format.ToString());
 }
 ```
 
