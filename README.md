@@ -10,7 +10,7 @@ This repository contains GroupDocs.Classification Cloud SDK for .NET source code
 
 
 See [API Reference](https://apireference.groupdocs.cloud/classification/) for full API specification.
-## New Features & Enhancements Version 20.11
+## New Features & Enhancements Version 21.4
 
 - Batch text classification was added to API. Now up to 10 texts can be classified in one request.
 - Sentiment3 taxonomy (Negative/Neutral/Positive) is supported now.
@@ -119,7 +119,7 @@ string MyClientId = "";
 string MyClientSecret = "";
 
 // Create instance of the API
-var configuration = new Configuration(MyClientId, MyClientSecret);
+var configuration = new Configuration { ClientId = MyClientId, ClientSecret = MyClientSecret };
 var api = new ClassificationApi(configuration);
 
 // Get supported file formats
