@@ -1,5 +1,5 @@
 // --------------------------------------------------------------------------------------------------------------------
-// <copyright company="Aspose" file="FormatCollection.cs">
+// <copyright company="Aspose" file="FilesUploadResult.cs">
 //   Copyright (c) 2021 GroupDocs.Classification for Cloud
 // </copyright>
 // <summary>
@@ -34,14 +34,19 @@ namespace GroupDocs.Classification.Cloud.Sdk.Model
   using Newtonsoft.Json.Converters;
 
   /// <summary>
-  /// Describes object which contains list of supported file formats.
+  /// File upload result
   /// </summary>  
-  public class FormatCollection 
+  public class FilesUploadResult 
   {                       
         /// <summary>
-        /// Supported file formats.
+        /// List of uploaded file names
         /// </summary>  
-        public List<Format> Formats { get; set; }
+        public List<string> Uploaded { get; set; }
+
+        /// <summary>
+        /// List of errors.
+        /// </summary>  
+        public List<Error> Errors { get; set; }
 
         /// <summary>
         /// Get the string presentation of the object
@@ -50,8 +55,9 @@ namespace GroupDocs.Classification.Cloud.Sdk.Model
         public override string ToString()  
         {
           var sb = new StringBuilder();
-          sb.Append("class FormatCollection {\n");
-          sb.Append("  Formats: ").Append(this.Formats).Append("\n");
+          sb.Append("class FilesUploadResult {\n");
+          sb.Append("  Uploaded: ").Append(this.Uploaded).Append("\n");
+          sb.Append("  Errors: ").Append(this.Errors).Append("\n");
           sb.Append("}\n");
           return sb.ToString();
         }

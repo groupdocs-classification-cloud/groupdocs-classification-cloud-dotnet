@@ -1,6 +1,6 @@
 // --------------------------------------------------------------------------------------------------------------------
 // <copyright company="Aspose" file="BaseRequest.cs">
-//   Copyright (c) 2020 GroupDocs.Classification for Cloud
+//   Copyright (c) 2021 GroupDocs.Classification for Cloud
 // </copyright>
 // <summary>
 //   Permission is hereby granted, free of charge, to any person obtaining a copy

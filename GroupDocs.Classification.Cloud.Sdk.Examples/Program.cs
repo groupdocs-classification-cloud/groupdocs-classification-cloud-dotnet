@@ -14,8 +14,8 @@
             // TODO: Get your ClientId and ClientSecret at https://dashboard.groupdocs.cloud/ (free registration is required).
             var configuration = new Configuration
             {
-                AppSid = "XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX",
-                AppKey = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+                ClientId = "XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX",
+                ClientSecret = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
             };
 
             // Set timeout if necessary.

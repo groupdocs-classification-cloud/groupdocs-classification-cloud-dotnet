@@ -1,5 +1,5 @@
 // --------------------------------------------------------------------------------------------------------------------
-// <copyright company="Aspose" file="ClassificationApi.cs">
+// <copyright company="Aspose" file="StorageApi.cs">
 //   Copyright (c) 2021 GroupDocs.Classification for Cloud
 // </copyright>
 // <summary>
@@ -35,14 +35,14 @@ namespace GroupDocs.Classification.Cloud.Sdk.Api
     /// <summary>
     /// GroupDocs.Classification for Cloud API.
     /// </summary>
-    public class ClassificationApi
+    public class StorageApi
     {
         public const int DefaultTimeout = 100000;
         private readonly ApiInvoker apiInvoker;
         private readonly Configuration configuration;     
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ClassificationApi"/> class.
+        /// Initializes a new instance of the <see cref="StorageApi"/> class.
         /// </summary>
         /// <param name="clientSecret">
         /// Client's secret.
@@ -51,17 +51,17 @@ namespace GroupDocs.Classification.Cloud.Sdk.Api
         /// Client's id.
         /// </param>
         /// <param name="timeout">Request's timeout (default is 100s)</param>
-        public ClassificationApi(string clientSecret, string clientId, int timeout = DefaultTimeout)
+        public StorageApi(string clientSecret, string clientId, int timeout = DefaultTimeout)
             : this(new Configuration { ClientSecret = clientSecret, ClientId = clientId }, timeout)
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ClassificationApi"/> class.
+        /// Initializes a new instance of the <see cref="StorageApi"/> class.
         /// </summary>    
         /// <param name="configuration">Configuration settings</param>
         /// <param name="timeout">Request's timeout (default is 100s)</param>
-        public ClassificationApi(Configuration configuration, int timeout = DefaultTimeout)
+        public StorageApi(Configuration configuration, int timeout = DefaultTimeout)
         {
             this.configuration = configuration;
             
@@ -73,191 +73,178 @@ namespace GroupDocs.Classification.Cloud.Sdk.Api
         }                            
 
         /// <summary>
-        /// Classifies text or document. 
+        /// Get disc usage 
         /// </summary>
-        /// <param name="request">Request. <see cref="ClassifyRequest" /></param> 
-        /// <returns><see cref="ClassificationResponse"/></returns>            
-        public ClassificationResponse Classify(ClassifyRequest request)
+        /// <param name="request">Request. <see cref="GetDiscUsageRequest" /></param> 
+        /// <returns><see cref="DiscUsage"/></returns>            
+        public DiscUsage GetDiscUsage(GetDiscUsageRequest request)
         {
-            // verify the required parameter 'request' is set
-            if (request.Request == null) 
-            {
-                throw new ApiException(400, "Missing required parameter 'request' when calling Classify");
-            }
-
             // create path and map variables
-            var resourcePath = this.configuration.GetApiRootUrl() + "/classification/classify";
+            var resourcePath = this.configuration.GetApiRootUrl() + "/classification/storage/disc";
             resourcePath = Regex
                         .Replace(resourcePath, "\\*", string.Empty)
                         .Replace("&amp;", "&")
                         .Replace("/?", "?");
-            resourcePath = UrlHelper.AddQueryParameterToUrl(resourcePath, "bestClassesCount", request.BestClassesCount);
-            resourcePath = UrlHelper.AddQueryParameterToUrl(resourcePath, "taxonomy", request.Taxonomy);
-            resourcePath = UrlHelper.AddQueryParameterToUrl(resourcePath, "precisionRecallBalance", request.PrecisionRecallBalance);
-            resourcePath = UrlHelper.AddQueryParameterToUrl(resourcePath, "storage", request.Storage);
-            var postBody = SerializationHelper.Serialize(request.Request); // http body (model) parameter
-            try 
-            {                               
-                var response = this.apiInvoker.InvokeApi(
-                    resourcePath, 
-                    "POST", 
-                    postBody, 
-                    null, 
-                    null);
-                if (response != null)
-                {
-                    return (ClassificationResponse)SerializationHelper.Deserialize(response, typeof(ClassificationResponse));
-                }
-                    
-                return null;
-            } 
-            catch (ApiException ex) 
-            {
-                if (ex.ErrorCode == 404) 
-                {
-                    return null;
-                }
-                
-                throw;                
-            }
-        }
-
-        /// <summary>
-        /// Classifies batch of texts. 
-        /// </summary>
-        /// <param name="request">Request. <see cref="ClassifyBatchRequest" /></param> 
-        /// <returns><see cref="BatchResponse"/></returns>            
-        public BatchResponse ClassifyBatch(ClassifyBatchRequest request)
-        {
-            // verify the required parameter 'request' is set
-            if (request.Request == null) 
-            {
-                throw new ApiException(400, "Missing required parameter 'request' when calling ClassifyBatch");
-            }
-
-            // create path and map variables
-            var resourcePath = this.configuration.GetApiRootUrl() + "/classification/classify/batch";
-            resourcePath = Regex
-                        .Replace(resourcePath, "\\*", string.Empty)
-                        .Replace("&amp;", "&")
-                        .Replace("/?", "?");
-            resourcePath = UrlHelper.AddQueryParameterToUrl(resourcePath, "bestClassesCount", request.BestClassesCount);
-            resourcePath = UrlHelper.AddQueryParameterToUrl(resourcePath, "taxonomy", request.Taxonomy);
-            resourcePath = UrlHelper.AddQueryParameterToUrl(resourcePath, "precisionRecallBalance", request.PrecisionRecallBalance);
-            var postBody = SerializationHelper.Serialize(request.Request); // http body (model) parameter
-            try 
-            {                               
-                var response = this.apiInvoker.InvokeApi(
-                    resourcePath, 
-                    "POST", 
-                    postBody, 
-                    null, 
-                    null);
-                if (response != null)
-                {
-                    return (BatchResponse)SerializationHelper.Deserialize(response, typeof(BatchResponse));
-                }
-                    
-                return null;
-            } 
-            catch (ApiException ex) 
-            {
-                if (ex.ErrorCode == 404) 
-                {
-                    return null;
-                }
-                
-                throw;                
-            }
-        }
-
-        /// <summary>
-        /// Classifies document from stream. 
-        /// </summary>
-        /// <param name="request">Request. <see cref="ClassifyFileRequest" /></param> 
-        /// <returns><see cref="ClassificationResponse"/></returns>            
-        public ClassificationResponse ClassifyFile(ClassifyFileRequest request)
-        {
-            // create path and map variables
-            var resourcePath = this.configuration.GetApiRootUrl() + "/classification/classify/file";
-            resourcePath = Regex
-                        .Replace(resourcePath, "\\*", string.Empty)
-                        .Replace("&amp;", "&")
-                        .Replace("/?", "?");
-            var formParams = new Dictionary<string, object>();
-            resourcePath = UrlHelper.AddQueryParameterToUrl(resourcePath, "bestClassesCount", request.BestClassesCount);
-            resourcePath = UrlHelper.AddQueryParameterToUrl(resourcePath, "taxonomy", request.Taxonomy);
-            resourcePath = UrlHelper.AddQueryParameterToUrl(resourcePath, "precisionRecallBalance", request.PrecisionRecallBalance);
-            resourcePath = UrlHelper.AddQueryParameterToUrl(resourcePath, "password", request.Password);
-
-            if (request.File != null) 
-            {
-                formParams.Add("filename", "test.pdf");
-                formParams.Add("file", this.apiInvoker.ToFileInfo(request.File, "File"));
-            }
+            resourcePath = UrlHelper.AddQueryParameterToUrl(resourcePath, "storageName", request.StorageName);
             
             try 
-            {                               
-                var response = this.apiInvoker.InvokeApi(
-                    resourcePath, 
-                    "POST", 
-                    null, 
-                    null, 
-                    formParams);
-                if (response != null)
-                {
-                    return (ClassificationResponse)SerializationHelper.Deserialize(response, typeof(ClassificationResponse));
-                }
-                    
-                return null;
-            } 
-            catch (ApiException ex) 
-            {
-                if (ex.ErrorCode == 404) 
-                {
-                    return null;
-                }
-                
-                throw;                
-            }
-        }
-
-        /// <summary>
-        /// Retrieves list of supported file formats. 
-        /// </summary>
-        /// <param name="request">Request. <see cref="GetSupportedFileFormatsRequest" /></param> 
-        /// <returns><see cref="FormatCollection"/></returns>            
-        public FormatCollection GetSupportedFileFormats(GetSupportedFileFormatsRequest request)
-        {
-            // create path and map variables
-            var resourcePath = this.configuration.GetApiRootUrl() + "/classification/formats";
-            resourcePath = Regex
-                        .Replace(resourcePath, "\\*", string.Empty)
-                        .Replace("&amp;", "&")
-                        .Replace("/?", "?");
-            
-            try 
-            {                               
+            {              
                 var response = this.apiInvoker.InvokeApi(
                     resourcePath, 
                     "GET", 
                     null, 
                     null, 
                     null);
-                if (response != null)
+				if (response != null)
                 {
-                    return (FormatCollection)SerializationHelper.Deserialize(response, typeof(FormatCollection));
+                    return (DiscUsage)SerializationHelper.Deserialize(response, typeof(DiscUsage));
                 }
-                    
-                return null;
-            } 
+                return null;         
+			} 
             catch (ApiException ex) 
             {
                 if (ex.ErrorCode == 404) 
                 {
                     return null;
                 }
-                
+                throw;                
+            }
+        }
+
+        /// <summary>
+        /// Get file versions 
+        /// </summary>
+        /// <param name="request">Request. <see cref="GetFileVersionsRequest" /></param> 
+        /// <returns><see cref="FileVersions"/></returns>            
+        public FileVersions GetFileVersions(GetFileVersionsRequest request)
+        {
+            // verify the required parameter 'path' is set
+            if (request.Path == null) 
+            {
+                throw new ApiException(400, "Missing required parameter 'path' when calling GetFileVersions");
+            }
+
+            // create path and map variables
+            var resourcePath = this.configuration.GetApiRootUrl() + "/classification/storage/version/{path}";
+            resourcePath = Regex
+                        .Replace(resourcePath, "\\*", string.Empty)
+                        .Replace("&amp;", "&")
+                        .Replace("/?", "?");
+            resourcePath = UrlHelper.AddPathParameter(resourcePath, "path", request.Path);
+            resourcePath = UrlHelper.AddQueryParameterToUrl(resourcePath, "storageName", request.StorageName);
+            
+            try 
+            {              
+                var response = this.apiInvoker.InvokeApi(
+                    resourcePath, 
+                    "GET", 
+                    null, 
+                    null, 
+                    null);
+				if (response != null)
+                {
+                    return (FileVersions)SerializationHelper.Deserialize(response, typeof(FileVersions));
+                }
+                return null;         
+			} 
+            catch (ApiException ex) 
+            {
+                if (ex.ErrorCode == 404) 
+                {
+                    return null;
+                }
+                throw;                
+            }
+        }
+
+        /// <summary>
+        /// Check if file or folder exists 
+        /// </summary>
+        /// <param name="request">Request. <see cref="ObjectExistsRequest" /></param> 
+        /// <returns><see cref="ObjectExist"/></returns>            
+        public ObjectExist ObjectExists(ObjectExistsRequest request)
+        {
+            // verify the required parameter 'path' is set
+            if (request.Path == null) 
+            {
+                throw new ApiException(400, "Missing required parameter 'path' when calling ObjectExists");
+            }
+
+            // create path and map variables
+            var resourcePath = this.configuration.GetApiRootUrl() + "/classification/storage/exist/{path}";
+            resourcePath = Regex
+                        .Replace(resourcePath, "\\*", string.Empty)
+                        .Replace("&amp;", "&")
+                        .Replace("/?", "?");
+            resourcePath = UrlHelper.AddPathParameter(resourcePath, "path", request.Path);
+            resourcePath = UrlHelper.AddQueryParameterToUrl(resourcePath, "storageName", request.StorageName);
+            resourcePath = UrlHelper.AddQueryParameterToUrl(resourcePath, "versionId", request.VersionId);
+            
+            try 
+            {              
+                var response = this.apiInvoker.InvokeApi(
+                    resourcePath, 
+                    "GET", 
+                    null, 
+                    null, 
+                    null);
+				if (response != null)
+                {
+                    return (ObjectExist)SerializationHelper.Deserialize(response, typeof(ObjectExist));
+                }
+                return null;         
+			} 
+            catch (ApiException ex) 
+            {
+                if (ex.ErrorCode == 404) 
+                {
+                    return null;
+                }
+                throw;                
+            }
+        }
+
+        /// <summary>
+        /// Check if storage exists 
+        /// </summary>
+        /// <param name="request">Request. <see cref="StorageExistsRequest" /></param> 
+        /// <returns><see cref="StorageExist"/></returns>            
+        public StorageExist StorageExists(StorageExistsRequest request)
+        {
+            // verify the required parameter 'storageName' is set
+            if (request.StorageName == null) 
+            {
+                throw new ApiException(400, "Missing required parameter 'storageName' when calling StorageExists");
+            }
+
+            // create path and map variables
+            var resourcePath = this.configuration.GetApiRootUrl() + "/classification/storage/{storageName}/exist";
+            resourcePath = Regex
+                        .Replace(resourcePath, "\\*", string.Empty)
+                        .Replace("&amp;", "&")
+                        .Replace("/?", "?");
+            resourcePath = UrlHelper.AddPathParameter(resourcePath, "storageName", request.StorageName);
+            
+            try 
+            {              
+                var response = this.apiInvoker.InvokeApi(
+                    resourcePath, 
+                    "GET", 
+                    null, 
+                    null, 
+                    null);
+				if (response != null)
+                {
+                    return (StorageExist)SerializationHelper.Deserialize(response, typeof(StorageExist));
+                }
+                return null;         
+			} 
+            catch (ApiException ex) 
+            {
+                if (ex.ErrorCode == 404) 
+                {
+                    return null;
+                }
                 throw;                
             }
         }

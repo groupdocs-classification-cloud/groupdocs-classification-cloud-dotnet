@@ -1,6 +1,6 @@
 // --------------------------------------------------------------------------------------------------------------------
-// <copyright company="Aspose" file="FormatCollection.cs">
-//   Copyright (c) 2021 GroupDocs.Classification for Cloud
+// <copyright company="Aspose" file="GetFileVersionsRequest.cs">
+//   Copyright (c) 2020 GroupDocs.Classification for Cloud
 // </copyright>
 // <summary>
 //   Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -22,38 +22,41 @@
 //  SOFTWARE.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
-namespace GroupDocs.Classification.Cloud.Sdk.Model 
+namespace GroupDocs.Classification.Cloud.Sdk.Model.Requests 
 {
-  using System;  
-  using System.Collections;
-  using System.Collections.Generic;
-  using System.Runtime.Serialization;
-  using System.Text;
-  using Newtonsoft.Json;
-  using Newtonsoft.Json.Converters;
+  using GroupDocs.Classification.Cloud.Sdk.Model; 
 
   /// <summary>
-  /// Describes object which contains list of supported file formats.
+  /// Request model for <see cref="GroupDocs.Classification.Cloud.Sdk.Api.ClassificationApi.GetFileVersions" /> operation.
   /// </summary>  
-  public class FormatCollection 
-  {                       
+  public class GetFileVersionsRequest  
+  {
         /// <summary>
-        /// Supported file formats.
-        /// </summary>  
-        public List<Format> Formats { get; set; }
+        /// Initializes a new instance of the <see cref="GetFileVersionsRequest"/> class.
+        /// </summary>        
+        public GetFileVersionsRequest()
+        {
+        }
 
         /// <summary>
-        /// Get the string presentation of the object
+        /// Initializes a new instance of the <see cref="GetFileVersionsRequest"/> class.
         /// </summary>
-        /// <returns>String presentation of the object</returns>
-        public override string ToString()  
+        /// <param name="path">File path e.g. &#39;/file.ext&#39;</param>
+        /// <param name="storageName">Storage name</param>
+        public GetFileVersionsRequest(string path, string storageName = null)             
         {
-          var sb = new StringBuilder();
-          sb.Append("class FormatCollection {\n");
-          sb.Append("  Formats: ").Append(this.Formats).Append("\n");
-          sb.Append("}\n");
-          return sb.ToString();
+            this.Path = path;
+            this.StorageName = storageName;
         }
-    }
+
+        /// <summary>
+        /// File path e.g. '/file.ext'
+        /// </summary>  
+        public string Path { get; set; }
+
+        /// <summary>
+        /// Storage name
+        /// </summary>  
+        public string StorageName { get; set; }
+  }
 }

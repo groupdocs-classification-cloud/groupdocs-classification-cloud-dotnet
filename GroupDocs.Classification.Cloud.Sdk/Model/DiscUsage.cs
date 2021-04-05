@@ -1,5 +1,5 @@
 // --------------------------------------------------------------------------------------------------------------------
-// <copyright company="Aspose" file="FormatCollection.cs">
+// <copyright company="Aspose" file="DiscUsage.cs">
 //   Copyright (c) 2021 GroupDocs.Classification for Cloud
 // </copyright>
 // <summary>
@@ -34,14 +34,19 @@ namespace GroupDocs.Classification.Cloud.Sdk.Model
   using Newtonsoft.Json.Converters;
 
   /// <summary>
-  /// Describes object which contains list of supported file formats.
+  /// Class for disc space information.
   /// </summary>  
-  public class FormatCollection 
+  public class DiscUsage 
   {                       
         /// <summary>
-        /// Supported file formats.
+        /// Application used disc space.
         /// </summary>  
-        public List<Format> Formats { get; set; }
+        public long? UsedSize { get; set; }
+
+        /// <summary>
+        /// Total disc space.
+        /// </summary>  
+        public long? TotalSize { get; set; }
 
         /// <summary>
         /// Get the string presentation of the object
@@ -50,8 +55,9 @@ namespace GroupDocs.Classification.Cloud.Sdk.Model
         public override string ToString()  
         {
           var sb = new StringBuilder();
-          sb.Append("class FormatCollection {\n");
-          sb.Append("  Formats: ").Append(this.Formats).Append("\n");
+          sb.Append("class DiscUsage {\n");
+          sb.Append("  UsedSize: ").Append(this.UsedSize).Append("\n");
+          sb.Append("  TotalSize: ").Append(this.TotalSize).Append("\n");
           sb.Append("}\n");
           return sb.ToString();
         }

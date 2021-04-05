@@ -1,6 +1,6 @@
 // --------------------------------------------------------------------------------------------------------------------
 // <copyright company="Aspose" file="Error.cs">
-//   Copyright (c) 2018 GroupDocs.Classification for Cloud
+//   Copyright (c) 2021 GroupDocs.Classification for Cloud
 // </copyright>
 // <summary>
 //   Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -25,22 +25,38 @@
 
 namespace GroupDocs.Classification.Cloud.Sdk.Model 
 {
+  using System;  
+  using System.Collections;
+  using System.Collections.Generic;
+  using System.Runtime.Serialization;
   using System.Text;
+  using Newtonsoft.Json;
+  using Newtonsoft.Json.Converters;
 
   /// <summary>
-  /// Error class
+  /// Error
   /// </summary>  
   public class Error 
   {                       
         /// <summary>
-        /// Response status.
+        /// Code             
         /// </summary>  
         public string Code { get; set; }
 
         /// <summary>
-        /// Response message.
+        /// Message             
         /// </summary>  
         public string Message { get; set; }
+
+        /// <summary>
+        /// Description             
+        /// </summary>  
+        public string Description { get; set; }
+
+        /// <summary>
+        /// Inner Error             
+        /// </summary>  
+        public ErrorDetails InnerError { get; set; }
 
         /// <summary>
         /// Get the string presentation of the object
@@ -52,6 +68,8 @@ namespace GroupDocs.Classification.Cloud.Sdk.Model
           sb.Append("class Error {\n");
           sb.Append("  Code: ").Append(this.Code).Append("\n");
           sb.Append("  Message: ").Append(this.Message).Append("\n");
+          sb.Append("  Description: ").Append(this.Description).Append("\n");
+          sb.Append("  InnerError: ").Append(this.InnerError).Append("\n");
           sb.Append("}\n");
           return sb.ToString();
         }

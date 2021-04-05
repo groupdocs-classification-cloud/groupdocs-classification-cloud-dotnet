@@ -29,8 +29,6 @@ namespace GroupDocs.Classification.Cloud.Sdk.Tests.Base
     using System.IO;
 
     using GroupDocs.Classification.Cloud.Sdk.Api;
-    using GroupDocs.Storage.Cloud.Sdk.Api;
-    using GroupDocs.Storage.Cloud.Sdk.Model.Requests;
 
     using Newtonsoft.Json;
 
@@ -60,7 +58,7 @@ namespace GroupDocs.Classification.Cloud.Sdk.Tests.Base
 
             // Set configuration and requests timeout.
             this.ClassificationApi = new ClassificationApi(configuration);
-            this.StorageApi = new StorageApi(new Storage.Cloud.Sdk.Configuration { AppKey = this.ClientSecret, AppSid = this.ClientId, ApiBaseUrl = this.keys.AuthorizationUrl, DebugMode = true });          
+            this.FileApi = new FileApi(configuration);
         }
 
         /// <summary>
@@ -99,7 +97,7 @@ namespace GroupDocs.Classification.Cloud.Sdk.Tests.Base
         /// <summary>
         /// Storage API
         /// </summary>
-        protected StorageApi StorageApi { get; set; }
+        protected FileApi FileApi { get; set; }
 
         /// <summary>
         /// Words API
@@ -160,10 +158,9 @@ namespace GroupDocs.Classification.Cloud.Sdk.Tests.Base
         {
             using (var ms = new MemoryStream(fileContent))
             {
-                this.StorageApi.GetListFiles(new GetListFilesRequest());
-                var request = new PutCreateRequest(path, ms, versionId, storage);
-                var response = this.StorageApi.PutCreate(request);
-                if (response?.Code != 200)
+                var request = new Model.Requests.UploadFileRequest(path, ms, storage);
+                var response = this.FileApi.UploadFile(request);
+                if (response == null)
                 {
                     throw new Exception("Can't upload file to the storage. Details: " + response.ToString());
                 }

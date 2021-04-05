@@ -1,6 +1,6 @@
 // --------------------------------------------------------------------------------------------------------------------
-// <copyright company="Aspose" file="FileInfo.cs">
-//   Copyright (c) 2021 GroupDocs.Classification for Cloud
+// <copyright company="Aspose" file="ObjectExistsRequest.cs">
+//   Copyright (c) 2020 GroupDocs.Classification for Cloud
 // </copyright>
 // <summary>
 //   Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -22,50 +22,48 @@
 //  SOFTWARE.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
-namespace GroupDocs.Classification.Cloud.Sdk.Model 
+namespace GroupDocs.Classification.Cloud.Sdk.Model.Requests 
 {
-  using System;  
-  using System.Collections;
-  using System.Collections.Generic;
-  using System.Runtime.Serialization;
-  using System.Text;
-  using Newtonsoft.Json;
-  using Newtonsoft.Json.Converters;
+  using GroupDocs.Classification.Cloud.Sdk.Model; 
 
   /// <summary>
-  /// FileInfo dto
+  /// Request model for <see cref="GroupDocs.Classification.Cloud.Sdk.Api.ClassificationApi.ObjectExists" /> operation.
   /// </summary>  
-  public class FileInfo 
-  {                       
+  public class ObjectExistsRequest  
+  {
         /// <summary>
-        /// Folder name
-        /// </summary>  
-        public string Folder { get; set; }
-
-        /// <summary>
-        /// File name
-        /// </summary>  
-        public string Name { get; set; }
-
-        /// <summary>
-        /// A password for the file 
-        /// </summary>  
-        public string Password { get; set; }
-
-        /// <summary>
-        /// Get the string presentation of the object
-        /// </summary>
-        /// <returns>String presentation of the object</returns>
-        public override string ToString()  
+        /// Initializes a new instance of the <see cref="ObjectExistsRequest"/> class.
+        /// </summary>        
+        public ObjectExistsRequest()
         {
-          var sb = new StringBuilder();
-          sb.Append("class FileInfo {\n");
-          sb.Append("  Folder: ").Append(this.Folder).Append("\n");
-          sb.Append("  Name: ").Append(this.Name).Append("\n");
-          sb.Append("  Password: ").Append(this.Password).Append("\n");
-          sb.Append("}\n");
-          return sb.ToString();
         }
-    }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ObjectExistsRequest"/> class.
+        /// </summary>
+        /// <param name="path">File or folder path e.g. &#39;/file.ext&#39; or &#39;/folder&#39;</param>
+        /// <param name="storageName">Storage name</param>
+        /// <param name="versionId">File version ID</param>
+        public ObjectExistsRequest(string path, string storageName = null, string versionId = null)             
+        {
+            this.Path = path;
+            this.StorageName = storageName;
+            this.VersionId = versionId;
+        }
+
+        /// <summary>
+        /// File or folder path e.g. '/file.ext' or '/folder'
+        /// </summary>  
+        public string Path { get; set; }
+
+        /// <summary>
+        /// Storage name
+        /// </summary>  
+        public string StorageName { get; set; }
+
+        /// <summary>
+        /// File version ID
+        /// </summary>  
+        public string VersionId { get; set; }
+  }
 }

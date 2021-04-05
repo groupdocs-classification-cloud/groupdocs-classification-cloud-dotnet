@@ -1,5 +1,5 @@
 // --------------------------------------------------------------------------------------------------------------------
-// <copyright company="Aspose" file="FormatCollection.cs">
+// <copyright company="Aspose" file="StorageExist.cs">
 //   Copyright (c) 2021 GroupDocs.Classification for Cloud
 // </copyright>
 // <summary>
@@ -34,14 +34,14 @@ namespace GroupDocs.Classification.Cloud.Sdk.Model
   using Newtonsoft.Json.Converters;
 
   /// <summary>
-  /// Describes object which contains list of supported file formats.
+  /// Storage exists
   /// </summary>  
-  public class FormatCollection 
+  public class StorageExist 
   {                       
         /// <summary>
-        /// Supported file formats.
+        /// Shows that the storage exists.             
         /// </summary>  
-        public List<Format> Formats { get; set; }
+        public bool? Exists { get; set; }
 
         /// <summary>
         /// Get the string presentation of the object
@@ -50,8 +50,8 @@ namespace GroupDocs.Classification.Cloud.Sdk.Model
         public override string ToString()  
         {
           var sb = new StringBuilder();
-          sb.Append("class FormatCollection {\n");
-          sb.Append("  Formats: ").Append(this.Formats).Append("\n");
+          sb.Append("class StorageExist {\n");
+          sb.Append("  Exists: ").Append(this.Exists).Append("\n");
           sb.Append("}\n");
           return sb.ToString();
         }

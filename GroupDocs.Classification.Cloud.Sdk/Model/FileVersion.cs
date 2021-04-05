@@ -1,5 +1,5 @@
 // --------------------------------------------------------------------------------------------------------------------
-// <copyright company="Aspose" file="FormatCollection.cs">
+// <copyright company="Aspose" file="FileVersion.cs">
 //   Copyright (c) 2021 GroupDocs.Classification for Cloud
 // </copyright>
 // <summary>
@@ -34,14 +34,19 @@ namespace GroupDocs.Classification.Cloud.Sdk.Model
   using Newtonsoft.Json.Converters;
 
   /// <summary>
-  /// Describes object which contains list of supported file formats.
+  /// File Version
   /// </summary>  
-  public class FormatCollection 
+  public class FileVersion : StorageFile 
   {                       
         /// <summary>
-        /// Supported file formats.
+        /// File Version ID.
         /// </summary>  
-        public List<Format> Formats { get; set; }
+        public string VersionId { get; set; }
+
+        /// <summary>
+        /// Specifies whether the file is (true) or is not (false) the latest version of an file.
+        /// </summary>  
+        public bool? IsLatest { get; set; }
 
         /// <summary>
         /// Get the string presentation of the object
@@ -50,8 +55,9 @@ namespace GroupDocs.Classification.Cloud.Sdk.Model
         public override string ToString()  
         {
           var sb = new StringBuilder();
-          sb.Append("class FormatCollection {\n");
-          sb.Append("  Formats: ").Append(this.Formats).Append("\n");
+          sb.Append("class FileVersion {\n");
+          sb.Append("  VersionId: ").Append(this.VersionId).Append("\n");
+          sb.Append("  IsLatest: ").Append(this.IsLatest).Append("\n");
           sb.Append("}\n");
           return sb.ToString();
         }
